@@ -1,0 +1,224 @@
+git checkout master // se vrakame na master
+git merge bug123// spojuva (samo so fast forward)
+git rebase master // rekurzivno spojuva granka so master 
+git pull origin //prezemame se sto ima na origin repoto == kombinacija od 2 komandi fetch + merge
+git rebase master //temp
+git push origin //gi prikacuva promenite
+git add --all // dodaj gi site novi i site modificirani fajlovi
+git commit -m "Add fajls"
+git log // gi dava site komiti
+git diff // gi davame site razliki pomegu fajlovi sto ne se staged od posledniot komit sto sme go napravile
+git reset HEAD LICENCE // resetiraj mi go fajlot licence kako poslednata verzija
+git checkout --LICENCE // gi briseme site promeni
+git commit -a -m "Modify readme" // gi dodava site fajlovi sto se tracked, em gi dodava em gi komitnuva, no ako fajlot e samo dodaden bez komit, toj nema da bide dodaden(negativna osobina)
+git reset --soft HEAD^ // reset into staging , se vrakame na stage fazata,  fajlot od komitnat se vraka vo modified (na scena)
+git pull // se prezemame od origin/master
+
+git reset --soft HEAD^ //vrati mi se na posledniot komit, a stavi gi site promeni sto gi imam napraveno vo staged
+git commit --amend -m "New message" // se sto sum stavil novo vo staged area , go zalepuvam na posleniot komit, so toa ke se promeni porakta na posledniot komit
+git reset --hard HEAD^ // ke gi izbrise site promeni a nie ke se vratime na posledniot komit
+git reset --hard HEAD^^ // dva komiti pozadi head , drugoto ke prebrise
+
+git remote //dodavame novi repozitoriumi
+
+
+
+
+kAKO DA STAVAM FAJL NA GIT HUB??
+1)kreiram fajl so desen klik :)
+2)git add fajl.txt
+3)git commit -m "fajlot e komitnat"
+4)git branch -M main
+5)git remote add origin <link>
+6)git push -u origin main
+treba da e vo red
+
+
+git remote -v // gi listame site repozitoriumi sto gi imame 
+git remote rm <name> // trgame repozitorium
+gir push -u <name> <branch> //to push to remotes
+git clone // go downloadira celiot repozitorium i go dodava na origin repozitoriumot
+git branch cat // kreira branch
+git branch //gi lista site branchovi
+git checkout cat // ke se prefrlime na cat branchot
+git add cat.txt, git commit -m "Create quantum cat"
+git checkout master
+git log / git status
+git merge cat // fast forward dodavanje, vozmozno samo koga imame razlika pomegu dvete granki
+gir branch -d name // brise granka! 
+git checkout -b admin (da vidime koga FF nema da raboti)
+git add, git commit -m..
+git checkout master
+git branch
+git pull (za svaku slucaj)
+git add store.rb
+git commit -m "Fix bug"
+git push (stavi na master)
+git checkout admin, pravi nesto
+git checkout master
+git merge admin (nema da bide ednostavno spojuvanje, ke se otvori editor za da napiseme poraka za merging)
+(rekurzivno spojuvanje)
+:wq (+ enter) // don't panic
+
+
+KOLABORACIJA
+jane i greg rabotat na ist proekt, greg nema postaveno nisto na server pa so cel da rabotat zaedno potrebno e greg da go pushne na nekoj server, a jane da povika git clone <linl>,
+so toa ke mozat da rabotat na istiot proekt.
+
+*Koga imame conflict git avtomatski gi modificira, gi pokazuva porakite, nie mora da gi sredeme konfliktite.Ke gi vidime dvete poraki, ke ja izbriseme ednata i taa ostanatata ke bide pullnata
+odkako gi popravivme komitite povikuvame:
+git commit -a -m "Merged commit"
+
+
+
+git checkout -b bugfix // kreira i premestuva na noviot branch
+git push origin :shopping_cart // izbrisi go remote branchot
+git branch -d shopping_cart // lokalno brisenje
+git branch -D shopping_cart // force deleting
+git remote prune origin //gi briseme remote branchovite sto gi sledime a ne postojat
+git push heroku-staging staging // se naogame momentalno na staging, ova nema da raboti bidejki prifaka samo master
+git push heroku=staging staging:master//vaka go izveduvame :D , ja zema celata sodrzina sto ja ima na brach i ja pushnuva na master
+
+TAGGING // pokazuvac kon nekoj komit
+git tag // gi listame site verzii
+git checkout v0.0.1 // se vrakame na verzija
+git tag -a v0.0.3 -m "version 0.0.3" //dodavame nova verzija
+git push --tags //kazuvame deka gi objavuvame na git hub samo tagiranjata na nasiot proekt
+
+KAKO SE PRAVI TAG?
+git tag // listame da gi vidime tagovite
+git tag -a v0.0.1 -m "tag created" // kreirame tag
+git push --tag // go pushnuvame tagot
+
+
+!!!!!!!! NE USPEAV DA NAPRAVAM VERSIONDOCUMENT NA V0.0.2
+
+git restore --staged <file>// to unstage
+
+
+
+FROM SCRATCH:
+mkdir Nov
+cd Nov
+git init
+notepad fajl.txt
+git add fajl.txt / git add .
+git status (staged, to be commited)
+git commit -m "Prv komit vo noviot folder"
+git status (nothing to commit)
+notepad B.txt
+notepad C.txt
+git status (untracked 2 fajla)
+git add .
+git commit -m "Vtor commit" (2 files changed, 2 insertions)
+git branch
+git branch bug123 / git checkout -b bug123 (kreiraj granka)
+git checkout bug123 (prefrli se na grankata)
+git add D.txt
+git add E.txt
+git commit -m "Staj na novata granka"
+git checkout master
+git merge bug123 (spoj gi commits od bug123 so master, fast-forward)
+git branch -d bug123 (najprosto brisenje)
+git checkout -b bug456 (nova granka)
+notepad F.txt
+git add F.txt
+git commit -m "Fajl F"
+notepad G.txt
+git add G.txt
+git commit -m "Fajl G"
+git checkout master
+git merge bug456 (spoj gi F i G so masterot)
+git branch -d bug456 (izbrisi ja grankata)
+-------------------------------------------
+git remote add origin https://github.com/miladodevska/Vezbam19.03.git (dodaj go remote na github)
+git remote -v (fetch i push, lista repos)
+git clone https://github.com/miladodevska/Vezbam19.03.git (mi vika You appear to have cloned an empty repository)
+git pull
+git remote -v
+git push -u origin master
+-------------------------------------------
+git add LICENSE.txt
+git status
+git diff
+git add LICENSE.txt (ako napraime add na izmenetata verzija), git diff (nema da vrati nisto), mora git diff --staged!
+git reset HEAD LICENSE.txt (u slucaj ako posledniot change nema blage veze, vrati se na poslednata stabilna verzija)
+git checkout -- LICENSE.txt (undo na site promeni)
+git reset --soft HEAD^ (ke se vratime na stage fazata, undo last commit)
+git add todo.txt
+git commit --amend -m "Modify readme &add todo.txt"(prilepi nesto na posledniot commit, na HEAD ke mu go dodade todo.txt, so toa ke go neame ovoj commit)
+git reset --hard HEAD^ (undo last commit & all changes)
+git reset --hard HEAD^^ (undo posledni 2 commits)
+---------------------
+RABOTA SO REMOTES
+git remote add origin <URLaddress> (dodadi nov remote)
+git remote rm <imenaremote ili origin> (to remove remotes)
+git push -u <name ili origin>  <master> (stavi gi promenite, -u e za usptream)
+-----------
+POSLE PUSH NE SMEAT OVIE:
+git reset --soft HEAD^
+git commit --amend -m "Message"
+git reset --hard HEAD^
+git reset --hard HEAD^^
+----------------------------
+COLLABORATING
+git remote -v // gi listame site repozitoriumi sto gi imame 
+git remote rm <name> // trgame repozitorium
+gir push -u <name> <branch> //to push to remotes
+git clone // go downloadira celiot repozitorium i go dodava na origin repozitoriumot
+git branch cat // kreira branch
+git branch //gi lista site branchovi
+git checkout cat // ke se prefrlime na cat branchot
+git add cat.txt, git commit -m "Create quantum cat"
+git checkout master
+git log / git status
+git merge cat // fast forward dodavanje, vozmozno samo koga imame razlika pomegu dvete granki
+gir branch -d name // brise granka! 
+git checkout -b admin (da vidime koga FF nema da raboti)
+git add, git commit -m..
+git checkout master
+git branch
+git pull (za svaku slucaj)
+git add store.rb
+git commit -m "Fix bug"
+git push (stavi na master)
+git checkout admin, pravi nesto
+git checkout master
+git merge admin (nema da bide ednostavno spojuvanje, ke se otvori editor za da napiseme poraka za merging)
+(rekurzivno spojuvanje)
+:wq (+ enter) // don't panic
+--------------------------------------------
+AV 4 GIT REAL 4,5,6
+Jane: git clone <link od repo>
+git status
+git add --all
+git commit -m "Add 2 files to stage mode"
+git push
+Greg: git commit -am "Update the file"
+(Sega imame commits na isto nivo)
+git push (rejected! ne moze da se zapise vrz commitot na Jane)
+git pull (made by recursive strategy)
+git push (success!)
+
+RABOTA SO BRANCHES:
+git branch -r (izlistaj gi site remote branches)
+git remote show origin (origin e ime na remote repo so koj sme povrzani, dava info za origin)
+git checkout -b bugfix // kreira i premestuva na noviot branch
+git push origin :shopping_cart // izbrisi go remote branchot
+git branch -d shopping_cart // lokalno brisenje
+git branch -D shopping_cart // force deleting
+git remote prune origin //gi briseme remote branchovite sto gi sledime a ne postojat
+git push heroku-staging staging // se naogame momentalno na staging, ova nema da raboti bidejki prifaka samo master
+git push heroku-staging staging:master//vaka go izveduvame :D , ja zema celata sodrzina sto ja ima na branch i ja pushnuva na master
+(lokalniot branch staging pushni go na master)
+
+TAGGING // pokazuvac kon nekoj komit
+git tag // gi listame site verzii
+git checkout v0.0.1 // se vrakame na verzija
+git tag -a v0.0.3 -m "version 0.0.3" //dodavame nova verzija
+git push --tags //kazuvame deka gi objavuvame na git hub samo tagiranjata na nasiot proekt
+
+KAKO SE PRAVI TAG?
+git tag // listame da gi vidime tagovite
+git tag -a v0.0.1 -m "tag created" // kreirame tag
+git push --tag // go pushnuvame tagot
