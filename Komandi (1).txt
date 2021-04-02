@@ -222,3 +222,80 @@ KAKO SE PRAVI TAG?
 git tag // listame da gi vidime tagovite
 git tag -a v0.0.1 -m "tag created" // kreirame tag
 git push --tag // go pushnuvame tagot
+----------------------------------------------------------
+AV 5:
+git log --oneline (isto ko git log samo pokratko)
+git checkout unicorns
+git rebase master (od unicorns staj gi u temp, izvrsi gi site od main, pa na kraj izvrsi od uncorns, spajanje rekurzivno)
+git rebase -i HEAD~3 (vrati 3 commits nazad, ke ti se otvori editor, so ova HEAD~3 ustv gi menjame samo porakite na commits)
+git rebase -i HEAD (nemam pojma za sho e, ama neso dava error nema komiti posle HEAD)
+git rebase -i HEAD^ (parentot na head, interaktiven rebase)
+git log --oneline (sea sakam da gi smenam dvata komiti)
+git rebase -i HEAD~3 (sea ke se otvori editor, samo smeni gi mestata so copy paste i moli se da uspee!)
+git log -- oneline (sea proveri sto si smenil, ke treba da gi razdvoime komitite)
+//so nekakov HEAD mora da go otvorime editorot, namesto pick stavame edit i neso kao pisuvame use eden commit
+git reset HEAD^ (ama prvo treba da se undo changes ?)
+git commit -a -m
+git commit -a -m (mora da gi commitneme dvata fajla)
+git rebase --continue (sme zavrsile)
+git log --oneline (tuka ke vidime deka od eden komit sea se dva)
+git rebase -i HEAD~4 (cekajte malce drugari, sea pak da gi vratime kako 1)
+//namesto pick, na posledniot komit staj mu squash, za da se spoi so pretposledniot i staj samo edna poraka
+git log --oneline (sea ke vidime deka nemame 4 komiti, tuku samo 3)
+---------------------------------------------------------------------
+STASHING:
+git diff (Greg raboti na granka gerbils ama mora da popravi nesto odma na master)
+git stash save (vo temp takozvani stash go stava toa so go rabotel na gerbils)
+git diff (ne dava nisto sea)
+git status (nothing to commit)
+git checkout master (poprava neso)
+git pull (e zaso e sea git pull ziti sve?)
+git checkout gerbils (vrakjaj se)
+git stash apply (povrati nazad toa so bilo vo stash)
+git diff (gi pokazuva promenite vo datotekata )
+git stash list (0,1,2 - gi lista fajlovite vo stashot)
+git stash apply stash@{1} (ako sakas da izvadis konkreten stash file)
+git stash list (a stash has been applied but it's still here)
+git stash drop (delete od listata)
+git stash list (sea vekje go nema stashot)
+
+git stash pop = git stash apply + git stash drop (izvadi go toj na vrvot i izbrisi go od listata vo stash)
+CONFLICTS:
+git stash apply (error)
+git reset --hard HEAD (konfliktot moze da se resi so nov commit ili so reset)
+git stash apply (ima changes not staged for commit)
+
+git stash pop (ako go koristis pop i ima konflikt)
+git stash list (ke ti go pojavi stashot kaj so ima frka)
+git stash drop (mora racno da se izbrise od listata)
+KEEP INDEX:
+git status (ima eden to be commited i eden modified- not staged)
+git stash save (ama ova ke gi stavi site na stash,a nie sakame samo toj so e unstaged)
+git status (ke rece nothing to commit)
+git stash pop (za da gi vrati go pravi ova)
+git stash save --keep-index (tie sto se vo staged nema da bidat stashed, samo tie so se unstaged)
+git status (changes to be commited:...)
+git commit -m "dfkjdhHY"
+git stash pop (unstaged files mozeme da gi izvadime od stash)
+
+git stash save (samo tracked files ke se stashnat)
+git status (ke pokaze untracked files)
+git stash save --include-untracked (da se stashnat i untracked)
+git status (nothing to commit)
+git stash list (basic listanje)
+git stash list --stat (ke gi prikaze promenite na fajlovite detalno)
+git stash show stash@{0} (promenite na samo eden fajl)
+git stash show (da zememe podatoci za vrvot na stekot)
+git stash show --patch (prikazuva promeni vo fajlovite na stash)
+
+git stash save "Add nesho"
+git stash list
+git stash save "Start "
+git branch -d gerbils (ova demek nesakajki go prai)
+git stash branch gerbil-toys stash@{0} (avtomatik rolomatik nova granka praime)
+git commit -am "swsgydh"
+
+git stash list (ke gi izlista site, pa i tie sho ne ni trebaat)
+git stash clear (iscisti se!)
+git stash list (prazno)
+
